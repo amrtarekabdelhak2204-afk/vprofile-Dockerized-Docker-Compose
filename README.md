@@ -82,10 +82,10 @@ vprofile-docker/
 The project builds and uses the following versioned images:
 
 ```text
-maghraby777/vprofile-app:1.0.0
-maghraby777/vprofile-db:1.0.0
-maghraby777/vprofile-rabbitmq:1.0.0
-maghraby777/vprofile-memcached:1.0.0
+amrtarek2204/vprofile-app:1.0.0
+amrtarek2204/vprofile-db:1.0.0
+amrtarek2204/vprofile-rabbitmq:1.0.0
+amrtarek2204/vprofile-memcached:1.0.0
 ```
 
 ---
@@ -138,7 +138,7 @@ sudo docker compose version
 ## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Mohamed-Maghraby/vprofile-dockerized.git
+git clone https://github.com/amrtarekabdelhak2204-afk/vprofile-Dockerized-Docker-Compose.git
 cd vprofile-dockerized
 ```
 
@@ -222,7 +222,7 @@ Do not commit `.env` to Git.
 ```bash
 docker build \
   -f docker/database/Dockerfile \
-  -t maghraby777/vprofile-db:1.0.0 \
+  -t amrtarek2204/vprofile-db:1.0.0 \
   .
 ```
 
@@ -237,7 +237,7 @@ MariaDB executes this script only when the database volume is initialized for th
 Verify the image:
 
 ```bash
-docker image ls maghraby777/vprofile-db
+docker image ls amrtarek2204/vprofile-db
 ```
 
 Verify the SQL initialization file:
@@ -245,7 +245,7 @@ Verify the SQL initialization file:
 ```bash
 docker run --rm \
   --entrypoint ls \
-  maghraby777/vprofile-db:1.0.0 \
+  amrtarek2204/vprofile-db:1.0.0 \
   -l /docker-entrypoint-initdb.d/
 ```
 
@@ -256,21 +256,21 @@ docker run --rm \
 ```bash
 docker build \
   -f docker/rabbitmq/Dockerfile \
-  -t maghraby777/vprofile-rabbitmq:1.0.0 \
+  -t amrtarek2204/vprofile-rabbitmq:1.0.0 \
   .
 ```
 
 Verify the image:
 
 ```bash
-docker image ls maghraby777/vprofile-rabbitmq
+docker image ls amrtarek2204/vprofile-rabbitmq
 ```
 
 Inspect its exposed port:
 
 ```bash
 docker image inspect \
-  maghraby777/vprofile-rabbitmq:1.0.0 \
+  amrtarek2204/vprofile-rabbitmq:1.0.0 \
   --format '{{json .Config.ExposedPorts}}'
 ```
 
@@ -289,21 +289,21 @@ RabbitMQ credentials are supplied at runtime through Docker Compose. They are no
 ```bash
 docker build \
   -f docker/memcached/Dockerfile \
-  -t maghraby777/vprofile-memcached:1.0.0 \
+  -t amrtarek2204/vprofile-memcached:1.0.0 \
   .
 ```
 
 Verify the image:
 
 ```bash
-docker image ls maghraby777/vprofile-memcached
+docker image ls amrtarek2204/vprofile-memcached
 ```
 
 Inspect its startup command:
 
 ```bash
 docker image inspect \
-  maghraby777/vprofile-memcached:1.0.0 \
+  amrtarek2204/vprofile-memcached:1.0.0 \
   --format '{{json .Config.Cmd}}'
 ```
 
@@ -318,7 +318,7 @@ Confirm the image runs as a non-root user:
 ```bash
 docker run --rm \
   --entrypoint id \
-  maghraby777/vprofile-memcached:1.0.0
+  amrtarek2204/vprofile-memcached:1.0.0
 ```
 
 ---
@@ -328,7 +328,7 @@ docker run --rm \
 ```bash
 docker build \
   -f docker/app/Dockerfile \
-  -t maghraby777/vprofile-app:1.0.0 \
+  -t amrtarek2204/vprofile-app:1.0.0 \
   .
 ```
 
@@ -368,14 +368,14 @@ This makes the application available at `/` instead of `/vprofile-v2`.
 Verify the image:
 
 ```bash
-docker image ls maghraby777/vprofile-app
+docker image ls amrtarek2204/vprofile-app
 ```
 
 Verify the runtime user and exposed port:
 
 ```bash
 docker image inspect \
-  maghraby777/vprofile-app:1.0.0 \
+  amrtarek2204/vprofile-app:1.0.0 \
   --format 'User={{.Config.User}} Ports={{json .Config.ExposedPorts}}'
 ```
 
@@ -392,16 +392,16 @@ User=tomcatapp Ports={"8080/tcp":{}}
 ```bash
 docker image ls --format \
   'table {{.Repository}}\t{{.Tag}}\t{{.Size}}' | \
-grep maghraby777
+grep amrtarek2204
 ```
 
 Expected repositories:
 
 ```text
-maghraby777/vprofile-db
-maghraby777/vprofile-rabbitmq
-maghraby777/vprofile-memcached
-maghraby777/vprofile-app
+amrtarek2204/vprofile-db
+amrtarek2204/vprofile-rabbitmq
+amrtarek2204/vprofile-memcached
+amrtarek2204/vprofile-app
 ```
 
 ---
@@ -622,31 +622,31 @@ docker inspect \
 Authenticate using a Docker Hub personal access token with read/write permission:
 
 ```bash
-docker login --username maghraby777
+docker login --username amrtarek2204
 ```
 
 Push the database image:
 
 ```bash
-docker push maghraby777/vprofile-db:1.0.0
+docker push amrtarek2204/vprofile-db:1.0.0
 ```
 
 Push the RabbitMQ image:
 
 ```bash
-docker push maghraby777/vprofile-rabbitmq:1.0.0
+docker push amrtarek2204/vprofile-rabbitmq:1.0.0
 ```
 
 Push the Memcached image:
 
 ```bash
-docker push maghraby777/vprofile-memcached:1.0.0
+docker push amrtarek2204/vprofile-memcached:1.0.0
 ```
 
 Push the application image:
 
 ```bash
-docker push maghraby777/vprofile-app:1.0.0
+docker push amrtarek2204/vprofile-app:1.0.0
 ```
 
 Or push all images:
@@ -658,7 +658,7 @@ for image in \
   vprofile-memcached \
   vprofile-app
 do
-  docker push "maghraby777/${image}:1.0.0"
+  docker push "amrtarek2204/${image}:1.0.0"
 done
 ```
 
@@ -750,14 +750,14 @@ Example:
 ```bash
 docker build \
   -f docker/app/Dockerfile \
-  -t maghraby777/vprofile-app:1.1.0 \
+  -t amrtarek2204/vprofile-db:1.0 \
   .
 ```
 
 Push it:
 
 ```bash
-docker push maghraby777/vprofile-app:1.1.0
+docker push amrtarek2204/vprofile-db:1.0
 ```
 
 Update `.env`:
@@ -978,8 +978,8 @@ git diff --cached --check
 Configure Git identity:
 
 ```bash
-git config user.name "Mohamed-Maghraby"
-git config user.email "mohamedali6115@gmail.com"
+git config user.name "amrtarekabdelhak2204-afk"
+git config user.email "amrtarekabdelhak.22.04@gmail.com"
 ```
 
 Commit:
@@ -993,7 +993,7 @@ Add the GitHub repository:
 
 ```bash
 git remote add origin \
-  https://github.com/Mohamed-Maghraby/vprofile-dockerized.git
+  https://github.com/amrtarekabdelhak2204-afk/vprofile-Dockerized-Docker-Compose.git
 ```
 
 Push:
